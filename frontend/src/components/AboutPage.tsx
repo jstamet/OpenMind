@@ -1,5 +1,5 @@
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import ResponsiveAppBar from "./Appbar";
+import ResponsiveAppBar from "../Appbar";
 
 const AboutPage = () => {
   return (

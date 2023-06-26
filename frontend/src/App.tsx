@@ -10,7 +10,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AppBar } from '@mui/material';
-import AboutPage from './AboutPage';
+import AboutPage from './components/AboutPage';
+import Login2 from './components/Login';
 
 const darkTheme = createTheme({
   palette: {
@@ -28,7 +29,7 @@ function App() {
     <Routes>
       <Route path="/" element={<AboutPage/>} />
       <Route path="/about" element={<AboutPage />} />
-      <Route path="/Login" element={<AboutPage />} />
+      <Route path="/Login" element={<Login2 />} />
       <Route path="/Demo" element={<AboutPage />} />
       <Route path="/Research" element={<AboutPage/>} />
     </Routes>
