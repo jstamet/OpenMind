@@ -10,7 +10,6 @@ type FormValues = {
 };
 
 const Login = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [deviceId, setDeviceId] = useState("");
@@ -19,7 +18,6 @@ const Login = () => {
     setEmail(data.email);
     setPassword(data.password);
     setDeviceId(data.deviceId);
-    console.log(email, password, deviceId)
   };
 
   return (

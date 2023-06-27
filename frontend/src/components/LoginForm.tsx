@@ -10,8 +10,8 @@ type FormValues = {
 };
 
 type LoginFormProps = {
-    onSubmit : (data:FormValues)=> void
-}
+  onSubmit: (data: FormValues) => void;
+};
 
 const LoginForm = (props: LoginFormProps) => {
   const form = useForm<FormValues>({
