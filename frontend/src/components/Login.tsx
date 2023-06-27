@@ -1,64 +1,32 @@
-import { Button, Stack } from "@mui/material";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import ResponsiveAppBar from "../Appbar";
-import { useForm } from "react-hook-form";
+import LoginForm from "./LoginForm";
+import { useState } from "react";
 
-type formValues = {
+type FormValues = {
   email: string;
   password: string;
   deviceId: string;
 };
 
 const Login = () => {
-  const form = useForm<formValues>({
-    defaultValues: {
-      email: "",
-      password: "",
-      deviceId: "",
-    },
-  });
 
-  const { register, handleSubmit } = form;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [deviceId, setDeviceId] = useState("");
 
-  const onSubmit = (data: formValues) => {
-    console.log(data);
+  const onSubmit = (data: FormValues) => {
+    setEmail(data.email);
+    setPassword(data.password);
+    setDeviceId(data.deviceId);
+    console.log(email, password, deviceId)
   };
 
   return (
     <>
       <ResponsiveAppBar></ResponsiveAppBar>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box width={400}>
-          <h1>Login with Neurosity Device</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={2}>
-              <TextField
-                label="Email"
-                variant="outlined"
-                {...register("email")}
-              />
-              <TextField
-                label="Password"
-                variant="outlined"
-                {...register("password")}
-              />
-              <TextField
-                label="Device Id"
-                type="password"
-                variant="outlined"
-                {...register("deviceId")}
-              />
-              <Button type="submit" variant="contained" color="primary">
-                Submit
-              </Button>
-            </Stack>
-          </form>
-        </Box>
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <LoginForm onSubmit={onSubmit}></LoginForm>
       </Box>
     </>
   );
