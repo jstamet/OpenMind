@@ -1,41 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Login from "./components/Login";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AboutPage from "./components/AboutPage";
+import useLocalStorage from "react-use/lib/useLocalStorage";
 import { Neurosity } from "@neurosity/sdk";
-import './App.css'
-import Login from './components/Login';
-import CssBaseline from '@mui/material/CssBaseline';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { AppBar } from '@mui/material';
-import AboutPage from './components/AboutPage';
-import Login2 from './components/Login';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#1976d2",
-    },
-  },
-});
+// const darkTheme = createTheme({
+//   palette: {
+//     mode: "dark",
+//     primary: {
+//       main: "#1976d2",
+//     },
+//   },
+// });
 
 function App() {
+  const [neurosity, setNeurosity] = useState<any>(null);
+  const [user, setUser] = useState(null);
+  const [deviceId, setDeviceId] = useLocalStorage("deviceId");
+
+
+  useEffect(() => {
+    if (deviceId) {
+      const myneurosity = new Neurosity(deviceId);
+      setNeurosity(myneurosity);
+    } 
+  }, [deviceId]);
 
   return (
-      <Router>
-    <Routes>
-      <Route path="/" element={<AboutPage/>} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/Login" element={<Login2 />} />
-      <Route path="/Demo" element={<AboutPage />} />
-      <Route path="/Research" element={<AboutPage/>} />
-    </Routes>
-  </Router>
-      
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<AboutPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route
+          path="/Login"
+          element={
+            <Login
+              neurosity={neurosity}
+              user={user}
+              setUser={setUser}
+              setDeviceId={setDeviceId}
+              setNeurosity = {setNeurosity}
+            />
+          }
+        />
+        <Route path="/Demo" element={<AboutPage />} />
+        <Route path="/Research" element={<AboutPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
