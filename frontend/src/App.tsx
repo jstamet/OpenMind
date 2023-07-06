@@ -6,27 +6,17 @@ import AboutPage from "./components/AboutPage";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { Neurosity } from "@neurosity/sdk";
 
-// const darkTheme = createTheme({
-//   palette: {
-//     mode: "dark",
-//     primary: {
-//       main: "#1976d2",
-//     },
-//   },
-// });
-
 function App() {
   const [neurosity, setNeurosity] = useState<any>(null);
   const [user, setUser] = useState(null);
   const [deviceId, setDeviceId] = useLocalStorage("deviceId");
 
-
   useEffect(() => {
-    if (deviceId) {
+    if (!neurosity && deviceId) {
       const myneurosity = new Neurosity(deviceId);
       setNeurosity(myneurosity);
-    } 
-  }, [deviceId]);
+    }
+  }, [deviceId, neurosity]);
 
   return (
     <Router>
@@ -41,7 +31,7 @@ function App() {
               user={user}
               setUser={setUser}
               setDeviceId={setDeviceId}
-              setNeurosity = {setNeurosity}
+              setNeurosity={setNeurosity}
             />
           }
         />

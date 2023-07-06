@@ -1,5 +1,5 @@
-import { Button, Stack } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Button, Container, Stack } from "@mui/material";
+
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 
@@ -11,6 +11,7 @@ type FormValues = {
 
 type LoginFormProps = {
   onSubmit: (data: FormValues) => void;
+  onLogout: () => void;
 };
 
 const LoginForm = (props: LoginFormProps) => {
@@ -24,14 +25,19 @@ const LoginForm = (props: LoginFormProps) => {
 
   const { register, handleSubmit } = form;
 
+  const handleLogout = () => {
+    props.onLogout();
+  };
+
   return (
-    <Box width={400}>
+    <Container>
       <h1>Login with Neurosity Device</h1>
       <form onSubmit={handleSubmit(props.onSubmit)}>
         <Stack spacing={2}>
           <TextField label="Email" variant="outlined" {...register("email")} />
           <TextField
             label="Password"
+            type="password"
             variant="outlined"
             {...register("password")}
           />
@@ -42,11 +48,15 @@ const LoginForm = (props: LoginFormProps) => {
             {...register("deviceId")}
           />
           <Button type="submit" variant="contained" color="primary">
-            Submit
+            Login
+          </Button>
+
+          <Button variant="contained" color="secondary" onClick={handleLogout}>
+            Logout
           </Button>
         </Stack>
       </form>
-    </Box>
+    </Container>
   );
 };
 

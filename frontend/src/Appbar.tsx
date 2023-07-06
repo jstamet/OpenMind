@@ -1,6 +1,7 @@
+import { Box, Icon, Popover } from "@mui/material";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
+
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -12,8 +13,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Icon, Popover } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material";
 import YourLogo from "/brain_icon.png";
 import { useNavigate } from "react-router-dom";
 import { NestedMenuItem } from "mui-nested-menu";
@@ -27,11 +27,7 @@ const darkTheme = createTheme({
   },
 });
 
-const pages = [
-  "About",
-  "Login",
-];
-
+const pages = ["About", "Login"];
 
 function ResponsiveAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -150,16 +146,20 @@ function ResponsiveAppBar() {
                     {/* {(page==="Mushroom Research" && open) && <CustomizedMenus anchorEl={anchorEl}></CustomizedMenus>} */}
                   </Button>
                 ))}
-                <NestedMenuItem
-                label="Research"
-                parentMenuOpen={true}
-              >
-                <MenuItem onClick={() => handleCloseNavMenu('citizen')}>Citizen Science</MenuItem>
-                <MenuItem onClick={() => handleCloseNavMenu('neuroscience')}>Neuroscience</MenuItem>
-                <MenuItem onClick={() => handleCloseNavMenu('health')}>Mental Health</MenuItem>
-                <MenuItem onClick={() => handleCloseNavMenu('agriculture')}>Sustainable Agriculture</MenuItem>
-                
-              </NestedMenuItem>
+                <NestedMenuItem label="Research" parentMenuOpen={true}>
+                  <MenuItem onClick={() => handleCloseNavMenu("citizen")}>
+                    Citizen Science
+                  </MenuItem>
+                  <MenuItem onClick={() => handleCloseNavMenu("neuroscience")}>
+                    Neuroscience
+                  </MenuItem>
+                  <MenuItem onClick={() => handleCloseNavMenu("health")}>
+                    Mental Health
+                  </MenuItem>
+                  <MenuItem onClick={() => handleCloseNavMenu("agriculture")}>
+                    Sustainable Agriculture
+                  </MenuItem>
+                </NestedMenuItem>
               </Menu>
             </Box>
             <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -191,15 +191,19 @@ function ResponsiveAppBar() {
                   {page}
                 </Button>
               ))}
-              <NestedMenuItem
-                label="Research"
-                parentMenuOpen={true}
-              >
-                <MenuItem onClick={() => handleCloseNavMenu('citizen')}>Citizen Science</MenuItem>
-                <MenuItem onClick={() => handleCloseNavMenu('neuroscience')}>Neuroscience</MenuItem>
-                <MenuItem onClick={() => handleCloseNavMenu('health')}>Mental Health</MenuItem>
-                <MenuItem onClick={() => handleCloseNavMenu('agriculture')}>Sustainable Agriculture</MenuItem>
-                
+              <NestedMenuItem label="Research" parentMenuOpen={true}>
+                <MenuItem onClick={() => handleCloseNavMenu("citizen")}>
+                  Citizen Science
+                </MenuItem>
+                <MenuItem onClick={() => handleCloseNavMenu("neuroscience")}>
+                  Neuroscience
+                </MenuItem>
+                <MenuItem onClick={() => handleCloseNavMenu("health")}>
+                  Mental Health
+                </MenuItem>
+                <MenuItem onClick={() => handleCloseNavMenu("agriculture")}>
+                  Sustainable Agriculture
+                </MenuItem>
               </NestedMenuItem>
             </Box>
 
